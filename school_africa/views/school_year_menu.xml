@@ -1,0 +1,86 @@
+<odoo>
+    <!-- Main School Management Menu -->
+    <menuitem id="menu_school_management" name="School Management" sequence="1"/>
+
+    <!-- School Years Menu -->
+    <menuitem id="menu_school_year" name="School Years" parent="menu_school_management" sequence="2"/>
+    <record id="action_school_year" model="ir.actions.act_window">
+        <field name="name">School Years</field>
+        <field name="res_model">school.year</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_year_management" name="Manage School Years" parent="menu_school_year" action="action_school_year"/>
+
+    <!-- Classes Menu -->
+    <menuitem id="menu_school_class" name="Classes" parent="menu_school_management" sequence="3"/>
+    <record id="action_school_class" model="ir.actions.act_window">
+        <field name="name">Classes</field>
+        <field name="res_model">school.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_class_management" name="Manage Classes" parent="menu_school_class" action="action_school_class"/>
+
+    <!-- Students Menu -->
+    <menuitem id="menu_school_student" name="Students" parent="menu_school_management" sequence="4"/>
+    <record id="action_school_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_student_management" name="Manage Students" parent="menu_school_student" action="action_school_student"/>
+
+    <!-- Subjects Menu -->
+    <menuitem id="menu_school_matiere" name="Subjects" parent="menu_school_management" sequence="5"/>
+    <record id="action_school_matiere" model="ir.actions.act_window">
+        <field name="name">Subjects</field>
+        <field name="res_model">school.matiere</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <menuitem id="menu_school_matiere_management" name="Manage Subjects" parent="menu_school_matiere" action="action_school_matiere"/>
+
+    <!-- Professors Menu -->
+    <menuitem id="menu_school_professor" name="Professors" parent="menu_school_management" sequence="6"/>
+    <record id="action_school_professor" model="ir.actions.act_window">
+        <field name="name">Professors</field>
+        <field name="res_model">school.professor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_professor_management" name="Manage Professors" parent="menu_school_professor" action="action_school_professor"/>
+
+    <!-- Levels Menu -->
+    <menuitem id="menu_school_level" name="Levels" parent="menu_school_management" sequence="7"/>
+    <record id="action_school_level" model="ir.actions.act_window">
+        <field name="name">Levels</field>
+        <field name="res_model">school.level</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_level_management" name="Manage Levels" parent="menu_school_level" action="action_school_level"/>
+
+    <!-- Courses Menu -->
+    <menuitem id="menu_school_course" name="Courses" parent="menu_school_management" sequence="8"/>
+    <record id="action_school_course" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">school.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_course_management" name="Manage Courses" parent="menu_school_course" action="action_school_course"/>
+
+    <!-- Evaluations Menu -->
+    <menuitem id="menu_school_evaluation" name="Evaluations" parent="menu_school_management" sequence="9"/>
+    <record id="action_school_evaluation" model="ir.actions.act_window">
+        <field name="name">Evaluations</field>
+        <field name="res_model">school.evaluation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_evaluation_management" name="Manage Evaluations" parent="menu_school_evaluation" action="action_school_evaluation"/>
+
+    <!-- Sessions Menu -->
+    <menuitem id="menu_school_session" name="Sessions" parent="menu_school_management" sequence="10"/>
+    <record id="action_school_session" model="ir.actions.act_window">
+        <field name="name">Sessions</field>
+        <field name="res_model">school.session</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_id" ref="view_session_calendar"/>
+    </record>
+    <menuitem id="menu_school_session_management" name="Manage Sessions" parent="menu_school_session" action="action_school_session"/>
+</odoo>

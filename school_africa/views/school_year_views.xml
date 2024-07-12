@@ -1,0 +1,59 @@
+<odoo>
+    <record id="view_school_year_form" model="ir.ui.view">
+        <field name="name">school.year.form</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <form string="School Year">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <notebook>
+                        <page string="Periods">
+                            <field name="period_ids">
+                                <tree string="Periods">
+                                    <field name="name"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="position"/>
+                                </tree>
+                                <form string="Period">
+                                    <sheet>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                            <field name="position"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Attachments">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_school_year_tree" model="ir.ui.view">
+        <field name="name">school.year.tree</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <tree string="School Year">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

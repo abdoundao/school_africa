@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_matiere_form" model="ir.ui.view">
+        <field name="name">school.matiere.form</field>
+        <field name="model">school.matiere</field>
+        <field name="arch" type="xml">
+            <form string="School Matiere">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="color"/>
+                        <field name="professor_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_matiere_tree" model="ir.ui.view">
+        <field name="name">school.matiere.tree</field>
+        <field name="model">school.matiere</field>
+        <field name="arch" type="xml">
+            <tree string="School Matiere">
+                <field name="name"/>
+                <field name="color"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_matiere_kanban" model="ir.ui.view">
+        <field name="name">school.matiere.kanban</field>
+        <field name="model">school.matiere</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="color">
+                <field name="name"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{color}">
+                            <strong><field name="name"/></strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

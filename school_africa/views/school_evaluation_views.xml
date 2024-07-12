@@ -1,0 +1,50 @@
+<odoo>
+    <record id="view_evaluation_form" model="ir.ui.view">
+        <field name="name">school.evaluation.form</field>
+        <field name="model">school.evaluation</field>
+        <field name="arch" type="xml">
+            <form string="School Evaluation">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="course_id"/>
+                        <field name="max_note"/>
+                        <field name="evaluation_date"/>
+                        <field name="supervisor_id"/>
+                        <field name="other_supervisor"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="note_ids" context="{'default_evaluation_id': active_id}">
+                            <tree string="Notes"  editable="bottom">
+                                <field name="student_id"/>
+                                <field name="class_id"/>
+                                <field name="period_id"/>
+                                <field name="result"/>
+                            </tree>
+
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_evaluation_tree" model="ir.ui.view">
+        <field name="name">school.evaluation.tree</field>
+        <field name="model">school.evaluation</field>
+        <field name="arch" type="xml">
+            <tree string="School Evaluation">
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="evaluation_date"/>
+                <field name="supervisor_id"/>
+                <field name="other_supervisor"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

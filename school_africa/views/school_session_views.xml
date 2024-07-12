@@ -1,0 +1,71 @@
+<odoo>
+    <!-- Form view for Session -->
+    <record id="view_session_form" model="ir.ui.view">
+        <field name="name">school.session.form</field>
+        <field name="model">school.session</field>
+        <field name="arch" type="xml">
+            <form string="Session">
+                <sheet>
+                    <group>
+                        <field name="course_id"/>
+                        <field name="start_datetime"/>
+                        <field name="end_datetime"/>
+                        <field name="professor_id"/>
+                        <field name="class_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for Session -->
+    <record id="view_session_tree" model="ir.ui.view">
+        <field name="name">school.session.tree</field>
+        <field name="model">school.session</field>
+        <field name="arch" type="xml">
+            <tree string="Sessions">
+                <field name="course_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="professor_id"/>
+                <field name="class_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Calendar view for Session -->
+    <record id="view_session_calendar" model="ir.ui.view">
+        <field name="name">school.session.calendar</field>
+        <field name="model">school.session</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_datetime" date_stop="end_datetime" string="Sessions" color="color">
+                <field name="course_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search view for Session -->
+    <record id="view_session_search" model="ir.ui.view">
+        <field name="name">school.session.search</field>
+        <field name="model">school.session</field>
+        <field name="arch" type="xml">
+            <search string="Search Sessions">
+                <field name="class_id" string="Class"/>
+                <field name="professor_id" string="Professor"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_class" string="Class" context="{'group_by':'class_id'}"/>
+                    <filter name="group_by_professor" string="Professor" context="{'group_by':'professor_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Session -->
+    <record id="action_school_session" model="ir.actions.act_window">
+        <field name="name">Sessions</field>
+        <field name="res_model">school.session</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_id" ref="view_session_calendar"/>
+        <field name="search_view_id" ref="view_session_search"/>
+    </record>
+</odoo>

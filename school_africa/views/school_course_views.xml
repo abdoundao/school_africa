@@ -1,0 +1,78 @@
+<odoo>
+    <record id="view_course_form" model="ir.ui.view">
+        <field name="name">school.course.form</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+            <form string="School Course">
+                <header>
+                    <button string="Create Evaluation" type="object" name="action_create_evaluation" class="btn-primary"/>
+                    <button string="Generate Sessions" type="object" name="action_generate_sessions" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="class_id" options="{'no_create': True}"/>
+                        <field name="matiere_id" options="{'no_create': True}"/>
+                        <field name="professor_id" options="{'no_create': True}"/>
+                        <field name="period_id" options="{'no_create': True}"/>
+                        <field name="visible"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Course Schedule">
+                        <field name="course_line_ids">
+                            <tree string="Course Lines">
+                                <field name="day_of_week"/>
+                                <field name="start_hour"/>
+                                <field name="start_minute"/>
+                                <field name="end_hour"/>
+                                <field name="end_minute"/>
+                            </tree>
+                            <form string="Course Line">
+                                <sheet>
+                                    <group>
+                                        <field name="day_of_week"/>
+                                        <field name="start_hour"/>
+                                        <field name="start_minute"/>
+                                        <field name="end_hour"/>
+                                        <field name="end_minute"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </group>
+                    <group string="Sessions">
+                        <field name="session_ids" readonly="1">
+                            <tree string="Sessions">
+                                <field name="start_datetime"/>
+                                <field name="end_datetime"/>
+                                <field name="professor_id"/>
+                                <field name="class_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_course_tree" model="ir.ui.view">
+        <field name="name">school.course.tree</field>
+        <field name="model">school.course</field>
+        <field name="arch" type="xml">
+            <tree string="School Course" default_group_by="class_id">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="matiere_id"/>
+                <field name="professor_id"/>
+                <field name="period_id"/>
+                <field name="visible"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

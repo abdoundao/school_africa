@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="School Student">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="birth_date"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="class_id" options="{'no_create': True}"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="color"/>
+                    </group>
+                    <group string="Parent 1 Information">
+                        <field name="parent1_name"/>
+                        <field name="parent1_phone"/>
+                        <field name="parent1_email"/>
+                        <field name="parent1_address"/>
+                    </group>
+                    <group string="Parent 2 Information">
+                        <field name="parent2_name"/>
+                        <field name="parent2_phone"/>
+                        <field name="parent2_email"/>
+                        <field name="parent2_address"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree string="School Student">
+                <field name="name"/>
+                <field name="birth_date"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="class_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

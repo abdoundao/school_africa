@@ -1,0 +1,64 @@
+<odoo>
+    <record id="view_professor_form" model="ir.ui.view">
+        <field name="name">school.professor.form</field>
+        <field name="model">school.professor</field>
+        <field name="arch" type="xml">
+            <form string="School Professor">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="birth_date"/>
+                        <field name="hire_date"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="salary"/>
+                        <field name="department"/>
+                        <field name="matiere_ids" widget="many2many_tags"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="color"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_professor_tree" model="ir.ui.view">
+        <field name="name">school.professor.tree</field>
+        <field name="model">school.professor</field>
+        <field name="arch" type="xml">
+            <tree string="School Professor">
+                <field name="name"/>
+                <field name="department"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_professor_kanban" model="ir.ui.view">
+        <field name="name">school.professor.kanban</field>
+        <field name="model">school.professor</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="department">
+                <field name="name"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{color}">
+                            <strong><field name="name"/></strong><br/>
+                            <field name="department"/><br/>
+                            <field name="email"/><br/>
+                            <field name="phone"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
