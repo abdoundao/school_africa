@@ -12,11 +12,15 @@ class Evaluation(models.Model):
     class_id = fields.Many2one('school.class', string='Class', related='course_id.class_id', store=True, readonly=True)
     period_id = fields.Many2one('school.period', string='Period', related='course_id.period_id',
                                 store=True, readonly=True)
+    matiere_id = fields.Many2one('school.matiere', string='Matiere', related='course_id.matiere_id')
+    professor_id = fields.Many2one('school.professor', string='Professor', related='course_id.professor_id')
     evaluation_date = fields.Date(string='Evaluation Date', required=True)
     supervisor_id = fields.Many2one('res.users', string='Supervisor', required=False)
     other_supervisor = fields.Char(string='Other Supervisor')
     note_ids = fields.One2many('school.note', 'evaluation_id', string='Notes')
-
+    coefficient_evaluation = fields.Float(string='Coefficent Evaluation', default=1.0, required=True)
+    max_score = fields.Float(string='Max Score', compute='_compute_max_score')
+    min_score = fields.Float(string='Min Score', compute='_compute_min_score')
     @api.constrains('evaluation_date', 'course_id')
     def _check_evaluation_date_within_period(self):
         for record in self:
@@ -38,3 +42,11 @@ class Evaluation(models.Model):
                 }))
             evaluation.note_ids = notes
         return evaluation
+
+    def _compute_max_score(self):
+        for rec in self:
+            rec.max_score = rec.note_ids and max(rec.note_ids.mapped('result')) or 0
+
+    def _compute_min_score(self):
+        for rec in self:
+            rec.min_score = rec.note_ids and min(rec.note_ids.mapped('result')) or 0

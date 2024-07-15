@@ -12,6 +12,13 @@
                         <field name="end_datetime"/>
                         <field name="professor_id"/>
                         <field name="class_id"/>
+                         <field name="absence_ids">
+                                <tree string="Absences">
+                                    <field name="student_id"/>
+                                    <field name="justified"/>
+                                    <field name="justification_attachment_id"/>
+                                </tree>
+                            </field>
                     </group>
                 </sheet>
             </form>

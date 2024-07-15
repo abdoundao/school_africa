@@ -8,6 +8,7 @@
                     <group>
                         <field name="name"/>
                         <field name="course_id"/>
+                        <field name="coefficient_evaluation"/>
                         <field name="max_note"/>
                         <field name="evaluation_date"/>
                         <field name="supervisor_id"/>

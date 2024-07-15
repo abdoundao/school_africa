@@ -83,4 +83,22 @@
         <field name="view_id" ref="view_session_calendar"/>
     </record>
     <menuitem id="menu_school_session_management" name="Manage Sessions" parent="menu_school_session" action="action_school_session"/>
+
+    <!-- Payment Lines Menu -->
+    <menuitem id="menu_school_payment_line" name="Payment Lines" parent="menu_school_management" sequence="11"/>
+    <record id="action_school_payment_line" model="ir.actions.act_window">
+        <field name="name">Payment Lines</field>
+        <field name="res_model">school.payment.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_payment_line_management" name="Manage Payment Lines" parent="menu_school_payment_line" action="action_school_payment_line"/>
+
+    <!-- Absences Menu -->
+    <menuitem id="menu_school_absence" name="Absences" parent="menu_school_management" sequence="12"/>
+    <record id="action_school_absence" model="ir.actions.act_window">
+        <field name="name">Absences</field>
+        <field name="res_model">school.absence</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_absence_management" name="Manage Absences" parent="menu_school_absence" action="action_school_absence"/>
 </odoo>

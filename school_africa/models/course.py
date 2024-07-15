@@ -16,8 +16,9 @@ class Course(models.Model):
     visible = fields.Boolean(string='Visible', default=True)
     active = fields.Boolean(string='Active', default=True)
     session_ids = fields.One2many('school.session', 'course_id', string='Sessions')
+    coefficient = fields.Float(string='Coefficent', default=1.0, required=True)
 
-    @api.depends('matiere_id', 'class_id', 'professor_id')
+    @api.depends('matiere_id', 'class_id', 'professor_id', 'period_id')
     def _compute_name(self):
         for record in self:
             record.name = f"{record.matiere_id.name} - {record.class_id.name} - {record.professor_id.name} - {record.period_id.name}"
@@ -49,14 +50,18 @@ class Course(models.Model):
             course.session_ids.filtered(lambda s: s.start_datetime > fields.Datetime.now()).unlink()
 
             period_start_date = fields.Date.from_string(course.period_id.start_date)
+            if period_start_date and period_start_date < fields.Date.today():
+                period_start_date = fields.Date.today()
             period_end_date = fields.Date.from_string(course.period_id.end_date)
 
             for course_line in course.course_line_ids:
-                current_date = fields.Datetime.now().date()
+                current_date = period_start_date
                 while current_date <= period_end_date:
                     if current_date.weekday() == int(course_line.day_of_week):
-                        start_datetime = datetime.combine(current_date, datetime.min.time()) + timedelta(hours=course_line.start_hour, minutes=course_line.start_minute)
-                        end_datetime = datetime.combine(current_date, datetime.min.time()) + timedelta(hours=course_line.end_hour, minutes=course_line.end_minute)
+                        start_datetime = (datetime.combine(current_date, datetime.min.time()) +
+                                          timedelta(hours=course_line.start_hour, minutes=course_line.start_minute))
+                        end_datetime = (datetime.combine(current_date, datetime.min.time()) +
+                                        timedelta(hours=course_line.end_hour, minutes=course_line.end_minute))
                         self.env['school.session'].create({
                             'course_id': course.id,
                             'start_datetime': start_datetime,

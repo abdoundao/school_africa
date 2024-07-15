@@ -10,6 +10,7 @@
                         <field name="main_professor_id" options="{'no_create': True}"/>
                         <field name="school_year_id" options="{'no_create': True}"/>
                         <field name="level_id"/>
+                        <field name="tuition_fees"/>
                         <field name="student_ids">
                             <tree string="Students">
                                 <field name="name"/>

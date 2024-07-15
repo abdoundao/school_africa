@@ -10,6 +10,7 @@ access_school_course,access_school_course,model_school_course,base.group_user,1,
 access_school_course_line,access_school_course_line,model_school_course_line,base.group_user,1,1,1,1
 access_school_evaluation,access_school_evaluation,model_school_evaluation,base.group_user,1,1,1,1
 access_school_note,access_school_note,model_school_note,base.group_user,1,1,1,1
-access_school_note,access_school_note,model_school_note,base.group_user,1,1,1,1
 access_school_session,access_school_session,model_school_session,base.group_user,1,1,1,1
-
+access_school_payment_line,access_school_payment_line,model_school_payment_line,base.group_user,1,1,1,1
+access_school_absence,access_school_absence,model_school_absence,base.group_user,1,1,1,1
+access_student_report_wizard,access_student_report_wizard,model_student_report_wizard,base.group_user,1,1,1,1

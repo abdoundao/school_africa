@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_absence_form" model="ir.ui.view">
+        <field name="name">school.absence.form</field>
+        <field name="model">school.absence</field>
+        <field name="arch" type="xml">
+            <form string="Absence">
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="session_id"/>
+                        <field name="start_datetime"/>
+                        <field name="end_datetime"/>
+                        <field name="class_id"/>
+                        <field name="justified"/>
+                        <field name="justification_attachment_id" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_absence_tree" model="ir.ui.view">
+        <field name="name">school.absence.tree</field>
+        <field name="model">school.absence</field>
+        <field name="arch" type="xml">
+            <tree string="Absences">
+                <field name="student_id"/>
+                <field name="session_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="class_id"/>
+                <field name="justified"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_school_absence" model="ir.actions.act_window">
+        <field name="name">Absences</field>
+        <field name="res_model">school.absence</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

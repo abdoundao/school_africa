@@ -10,3 +10,6 @@ from . import course_line
 from . import evaluation
 from . import note
 from . import session
+from . import payment_line
+from . import absence
+from . import wizard

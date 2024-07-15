@@ -1,0 +1,62 @@
+<odoo>
+    <!-- Tree view for Payment Line -->
+    <record id="view_payment_line_tree" model="ir.ui.view">
+        <field name="name">school.payment.line.tree</field>
+        <field name="model">school.payment.line</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Lines">
+                <field name="student_id"/>
+                <field name="payment_date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="status"/>
+                <field name="class_id"/>
+                <field name="school_year_id"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for Payment Line -->
+    <record id="view_payment_line_form" model="ir.ui.view">
+        <field name="name">school.payment.line.form</field>
+        <field name="model">school.payment.line</field>
+        <field name="arch" type="xml">
+            <form string="Payment Line">
+                <sheet>
+                    <group>
+                        <field name="student_id" readonly="1"/>
+                        <field name="payment_date"/>
+                        <field name="start_date" readonly="1"/>
+                        <field name="end_date" readonly="1"/>
+                        <field name="status"/>
+                        <field name="class_id" readonly="1"/>
+                        <field name="school_year_id" readonly="1"/>
+                        <field name="amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view for Payment Line -->
+    <record id="view_payment_line_search" model="ir.ui.view">
+        <field name="name">school.payment.line.search</field>
+        <field name="model">school.payment.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Payment Lines">
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="school_year_id"/>
+                <field name="status"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_class" string="Class" context="{'group_by':'class_id'}"/>
+                    <filter name="group_by_school_year" string="School Year" context="{'group_by':'school_year_id'}"/>
+                    <filter name="group_by_status" string="Status" context="{'group_by':'status'}"/>
+                </group>
+                <filter string="Current Month" name="current_month" domain="[('start_date', '&gt;', context_today()), ('end_date', '&lt;', context_today())]"/>
+                <filter string="Current School Year" name="current_school_year" domain="[('school_year_id.start_date', '&lt;', context_today()), ('school_year_id.end_date', '&gt;', context_today())]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

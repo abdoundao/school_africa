@@ -1,0 +1,63 @@
+<odoo>
+    <template id="student_report_template">
+        <t t-foreach="docs" t-as="doc">
+                            <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+                <t t-set="doc_title">Student Report</t>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h4 style="text-align: center;">Student Report for <t t-esc="doc.student_id.name"/></h4>
+                        <h5>Notes from <t t-esc="doc.start_date"/> to <t t-esc="doc.end_date"/></h5>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Evaluation</th>
+                                    <th>Subject</th>
+                                    <th>Professor</th>
+                                    <th>Result</th>
+                                    <th>Max Score</th>
+                                    <th>Min Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.note_ids" t-as="note">
+                                    <tr>
+                                        <td><t t-esc="note.evaluation_id.evaluation_date"/></td>
+                                        <td><t t-esc="note.evaluation_id.name"/></td>
+                                        <td><t t-esc="note.evaluation_id.matiere_id.name"/></td>
+                                        <td><t t-esc="note.evaluation_id.professor_id.name"/></td>
+                                        <td><t t-esc="note.result"/></td>
+                                        <td><t t-esc="note.evaluation_id.max_score"/></td>
+                                        <td><t t-esc="note.evaluation_id.min_score"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <h5>Absences from <t t-esc="doc.start_date"/> to <t t-esc="doc.end_date"/></h5>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Session</th>
+                                    <th>Justified</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.absence_ids" t-as="absence">
+                                    <tr>
+                                        <td><t t-esc="absence.session_id.name"/></td>
+                                        <td><t t-esc="absence.justified and 'Yes' or 'No'"/></td>
+                                        <td><t t-if="absence.start_datetime"><t t-esc="absence.start_datetime"/></t></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
